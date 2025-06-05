@@ -102,7 +102,7 @@ const Index = () => {
             </Badge>
             <h1 className="text-5xl md:text-7xl font-bold text-black mb-8 leading-tight tracking-tight">
               O futuro da gestão de stock
-              <span className="block bg-gradient-to-r from-[#0038a5] to-[#3777fa] bg-clip-text text-transparent text-base">
+              <span className="block bg-gradient-to-r from-[#0038a5] to-[#3777fa] bg-clip-text text-transparent text-7xl">
                 chegou a Angola
               </span>
             </h1>
