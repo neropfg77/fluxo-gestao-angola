@@ -97,7 +97,7 @@ const Index = () => {
       <section id="home" className="pt-32 pb-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto mb-16">
-            <Badge className="bg-black/5 text-black border-black/10 mb-6 text-sm font-medium px-4 py-2">
+            <Badge className="text-white border-black/10 mb-6 text-sm font-medium px-4 py-2 bg-blue-500 rounded-sm">
               Lançamento previsto para este mês
             </Badge>
             <h1 className="text-5xl md:text-7xl font-bold text-black mb-8 leading-tight tracking-tight">
