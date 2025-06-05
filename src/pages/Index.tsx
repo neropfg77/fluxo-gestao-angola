@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
@@ -8,32 +7,34 @@ import { Badge } from "@/components/ui/badge";
 import { CheckCircle2, Star, TrendingUp, Users, AlertTriangle, BarChart3, Package, Clock, Target, Shield, Zap, ArrowRight, Database, Calculator, FileText, Settings, Eye, Bell } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
-
 const Index = () => {
   const [isReservationOpen, setIsReservationOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   const handleReservation = (e: React.FormEvent) => {
     e.preventDefault();
     // TODO: Integrate with Supabase to store email and name
-    console.log("Reservation data:", { name, email });
+    console.log("Reservation data:", {
+      name,
+      email
+    });
     toast({
       title: "Lugar Reservado!",
-      description: "Obrigado! Entraremos em contacto assim que o Fluxo Stock estiver disponível.",
+      description: "Obrigado! Entraremos em contacto assim que o Fluxo Stock estiver disponível."
     });
     setIsReservationOpen(false);
     setEmail("");
     setName("");
   };
-
   const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(id)?.scrollIntoView({
+      behavior: "smooth"
+    });
   };
-
-  return (
-    <div className="min-h-screen bg-white">
+  return <div className="min-h-screen bg-white">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-xl z-50 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -76,24 +77,11 @@ const Index = () => {
                 <form onSubmit={handleReservation} className="space-y-4">
                   <div>
                     <Label htmlFor="name">Nome Completo</Label>
-                    <Input
-                      id="name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder="Seu nome"
-                      required
-                    />
+                    <Input id="name" value={name} onChange={e => setName(e.target.value)} placeholder="Seu nome" required />
                   </div>
                   <div>
                     <Label htmlFor="email">Email</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="seu@email.com"
-                      required
-                    />
+                    <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="seu@email.com" required />
                   </div>
                   <Button type="submit" className="w-full bg-gradient-to-r from-[#0038a5] to-[#3777fa]">
                     Reservar Lugar
@@ -114,7 +102,7 @@ const Index = () => {
             </Badge>
             <h1 className="text-5xl md:text-7xl font-bold text-black mb-8 leading-tight tracking-tight">
               O futuro da gestão de stock
-              <span className="block bg-gradient-to-r from-[#0038a5] to-[#3777fa] bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-[#0038a5] to-[#3777fa] bg-clip-text text-transparent text-base">
                 chegou a Angola
               </span>
             </h1>
@@ -147,11 +135,7 @@ const Index = () => {
           
           <div className="relative max-w-5xl mx-auto">
             <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 border border-gray-200">
-              <img 
-                src="/lovable-uploads/b1e121dd-8231-4967-98ca-ea0ca7c04f95.png" 
-                alt="Dashboard Fluxo Stock" 
-                className="rounded-xl shadow-2xl w-full"
-              />
+              <img src="/lovable-uploads/b1e121dd-8231-4967-98ca-ea0ca7c04f95.png" alt="Dashboard Fluxo Stock" className="rounded-xl shadow-2xl w-full" />
               <div className="absolute -top-4 -right-4 bg-gradient-to-r from-[#0038a5] to-[#3777fa] text-white p-4 rounded-xl shadow-lg">
                 <TrendingUp className="h-6 w-6" />
               </div>
@@ -316,11 +300,7 @@ const Index = () => {
               </div>
               <div className="relative">
                 <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8">
-                  <img 
-                    src="/lovable-uploads/dda4c1f2-585e-41ca-8421-cc8b046126fc.png" 
-                    alt="Dashboard Fluxo Stock" 
-                    className="rounded-xl shadow-2xl w-full"
-                  />
+                  <img src="/lovable-uploads/dda4c1f2-585e-41ca-8421-cc8b046126fc.png" alt="Dashboard Fluxo Stock" className="rounded-xl shadow-2xl w-full" />
                 </div>
               </div>
             </div>
@@ -328,11 +308,7 @@ const Index = () => {
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div className="order-2 lg:order-1 relative">
                 <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8">
-                  <img 
-                    src="/lovable-uploads/71fa0184-3d0d-410e-be52-558e0a680eaa.png" 
-                    alt="Análises Fluxo Stock" 
-                    className="rounded-xl shadow-2xl w-full"
-                  />
+                  <img src="/lovable-uploads/71fa0184-3d0d-410e-be52-558e0a680eaa.png" alt="Análises Fluxo Stock" className="rounded-xl shadow-2xl w-full" />
                 </div>
               </div>
               <div className="order-1 lg:order-2">
@@ -398,11 +374,7 @@ const Index = () => {
               </div>
               <div className="relative">
                 <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8">
-                  <img 
-                    src="/lovable-uploads/674421b6-f440-4441-b170-87eb33a576de.png" 
-                    alt="Gestão de Equipas Fluxo Stock" 
-                    className="rounded-xl shadow-2xl w-full"
-                  />
+                  <img src="/lovable-uploads/674421b6-f440-4441-b170-87eb33a576de.png" alt="Gestão de Equipas Fluxo Stock" className="rounded-xl shadow-2xl w-full" />
                 </div>
               </div>
             </div>
@@ -511,9 +483,7 @@ const Index = () => {
               <CardContent className="p-0">
                 <div className="flex items-center mb-6">
                   <div className="flex text-yellow-400">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 fill-current" />
-                    ))}
+                    {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
                   </div>
                 </div>
                 <p className="text-gray-700 mb-6 leading-relaxed text-lg">
@@ -533,9 +503,7 @@ const Index = () => {
               <CardContent className="p-0">
                 <div className="flex items-center mb-6">
                   <div className="flex text-yellow-400">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 fill-current" />
-                    ))}
+                    {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
                   </div>
                 </div>
                 <p className="text-gray-700 mb-6 leading-relaxed text-lg">
@@ -554,9 +522,7 @@ const Index = () => {
               <CardContent className="p-0">
                 <div className="flex items-center mb-6">
                   <div className="flex text-yellow-400">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 fill-current" />
-                    ))}
+                    {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
                   </div>
                 </div>
                 <p className="text-gray-700 mb-6 leading-relaxed text-lg">
@@ -727,14 +693,11 @@ const Index = () => {
                   Fale diretamente com a nossa equipa de vendas e suporte técnico. 
                   Resposta rápida durante horário comercial.
                 </p>
-                <Button 
-                  className="bg-green-500 hover:bg-green-600 text-white px-8 py-3"
-                  onClick={() => {
-                    // TODO: Replace with actual WhatsApp link
-                    // window.open("https://wa.me/244XXXXXXXXX", "_blank");
-                    console.log("WhatsApp link needs to be configured here");
-                  }}
-                >
+                <Button className="bg-green-500 hover:bg-green-600 text-white px-8 py-3" onClick={() => {
+                // TODO: Replace with actual WhatsApp link
+                // window.open("https://wa.me/244XXXXXXXXX", "_blank");
+                console.log("WhatsApp link needs to be configured here");
+              }}>
                   Conversar no WhatsApp
                 </Button>
               </CardContent>
@@ -750,12 +713,9 @@ const Index = () => {
                   Envie-nos uma mensagem detalhada com as suas questões. 
                   Resposta garantida em 24 horas.
                 </p>
-                <Button 
-                  className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3"
-                  onClick={() => {
-                    window.location.href = "mailto:info@fluxostock.com";
-                  }}
-                >
+                <Button className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-3" onClick={() => {
+                window.location.href = "mailto:info@fluxostock.com";
+              }}>
                   Enviar Email
                 </Button>
               </CardContent>
@@ -878,8 +838,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
