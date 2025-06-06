@@ -11,7 +11,7 @@ export const ContactsPage = ({ onNavigate }: ContactsPageProps) => {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-purple-50 to-violet-100">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%238b5cf6" fill-opacity="0.1"%3E%3Cpolygon points="15,0 30,15 15,30 0,15"/%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSIjOGI1Y2Y2IiBmaWxsLW9wYWNpdHk9IjAuMSI+PHBvbHlnb24gcG9pbnRzPSIxNSwwIDMwLDE1IDE1LDMwIDAsMTUiLz48L2c+PC9zdmc+')] opacity-30"></div>
         
         <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
           <AnimatedSection animation="fade-in" className="mb-8">

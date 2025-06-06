@@ -41,7 +41,7 @@ export const FAQsPage = ({ onNavigate }: FAQsPageProps) => {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-blue-50 to-indigo-100">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%233b82f6" fill-opacity="0.1"%3E%3Cpath d="M25 0C11.2 0 0 11.2 0 25s11.2 25 25 25 25-11.2 25-25S38.8 0 25 0zm0 45C13.95 45 5 36.05 5 25S13.95 5 25 5s20 8.95 20 20-8.95 20-20 20z"/%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSIjM2I4MmY2IiBmaWxsLW9wYWNpdHk9IjAuMSI+PHBhdGggZD0iTTI1IDBDMTEuMiAwIDAgMTEuMiAwIDI1czExLjIgMjUgMjUgMjUgMjUtMTEuMiAyNS0yNVMzOC44IDAgMjUgMHptMCA0NUMxMy45NSA0NSA1IDM2LjA1IDUgMjVTMTMuOTUgNSAyNSA1czIwIDguOTUgMjAgMjAtOC45NSAyMC0yMCAyMHoiLz48L2c+PC9zdmc+')] opacity-30"></div>
         
         <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
           <AnimatedSection animation="fade-in" className="mb-8">
