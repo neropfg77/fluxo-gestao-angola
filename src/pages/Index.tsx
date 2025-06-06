@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
@@ -11,14 +10,15 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { MobileSidebar } from "@/components/MobileSidebar";
 import { AnimatedSection } from "@/components/AnimatedSection";
-
 const Index = () => {
   const [isReservationOpen, setIsReservationOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [navbarTransparent, setNavbarTransparent] = useState(false);
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
 
   // Handle navbar transparency when reaching benefits section
   useEffect(() => {
@@ -30,22 +30,19 @@ const Index = () => {
         setNavbarTransparent(isInView);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
   const handleReservation = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
     try {
-      const { error } = await supabase
-        .from('newsletter_signups')
-        .insert([
-          { name: name.trim(), email: email.trim() }
-        ]);
-
+      const {
+        error
+      } = await supabase.from('newsletter_signups').insert([{
+        name: name.trim(),
+        email: email.trim()
+      }]);
       if (error) {
         console.error('Error saving signup:', error);
         toast({
@@ -55,12 +52,10 @@ const Index = () => {
         });
         return;
       }
-
       toast({
         title: "Lugar Reservado!",
         description: "Obrigado! Entraremos em contacto assim que o Fluxo Stock estiver disponível."
       });
-      
       setIsReservationOpen(false);
       setEmail("");
       setName("");
@@ -75,57 +70,41 @@ const Index = () => {
       setIsSubmitting(false);
     }
   };
-
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({
+        behavior: "smooth"
+      });
     }
   };
-
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   };
-
-  return (
-    <div className="min-h-screen bg-white font-sf-pro">
+  return <div className="min-h-screen bg-white font-sf-pro">
       {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 border-b transition-all duration-500 ${
-        navbarTransparent 
-          ? 'bg-transparent backdrop-blur-sm border-white/10' 
-          : 'bg-white/95 backdrop-blur-xl border-gray-100'
-      }`}>
+      <nav className={`fixed top-0 w-full z-50 border-b transition-all duration-500 ${navbarTransparent ? 'bg-transparent backdrop-blur-sm border-white/10' : 'bg-white/95 backdrop-blur-xl border-gray-100'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <button 
-              onClick={scrollToTop}
-              className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
-            >
+            <button onClick={scrollToTop} className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
               <img src="/lovable-uploads/be851739-6948-467b-b6d5-48c4ce48598f.png" alt="Fluxo Stock" className="h-8 w-8" />
-              <span className={`text-xl font-bold transition-colors ${
-                navbarTransparent ? 'text-white' : 'text-black'
-              }`}>Fluxo Stock</span>
+              <span className={`text-xl font-bold transition-colors ${navbarTransparent ? 'text-white' : 'text-black'}`}>Fluxo Stock</span>
             </button>
             
             <div className="hidden md:flex space-x-8">
-              <button onClick={() => scrollToSection("home")} className={`transition-colors text-sm font-medium hover:opacity-80 ${
-                navbarTransparent ? 'text-white' : 'text-gray-700 hover:text-black'
-              }`}>
+              <button onClick={() => scrollToSection("home")} className={`transition-colors text-sm font-medium hover:opacity-80 ${navbarTransparent ? 'text-white' : 'text-gray-700 hover:text-black'}`}>
                 Home
               </button>
-              <button onClick={() => scrollToSection("benefits")} className={`transition-colors text-sm font-medium hover:opacity-80 ${
-                navbarTransparent ? 'text-white' : 'text-gray-700 hover:text-black'
-              }`}>
+              <button onClick={() => scrollToSection("benefits")} className={`transition-colors text-sm font-medium hover:opacity-80 ${navbarTransparent ? 'text-white' : 'text-gray-700 hover:text-black'}`}>
                 Benefícios
               </button>
-              <button onClick={() => scrollToSection("faqs")} className={`transition-colors text-sm font-medium hover:opacity-80 ${
-                navbarTransparent ? 'text-white' : 'text-gray-700 hover:text-black'
-              }`}>
+              <button onClick={() => scrollToSection("faqs")} className={`transition-colors text-sm font-medium hover:opacity-80 ${navbarTransparent ? 'text-white' : 'text-gray-700 hover:text-black'}`}>
                 FAQs
               </button>
-              <button onClick={() => scrollToSection("contacts")} className={`transition-colors text-sm font-medium hover:opacity-80 ${
-                navbarTransparent ? 'text-white' : 'text-gray-700 hover:text-black'
-              }`}>
+              <button onClick={() => scrollToSection("contacts")} className={`transition-colors text-sm font-medium hover:opacity-80 ${navbarTransparent ? 'text-white' : 'text-gray-700 hover:text-black'}`}>
                 Contactos
               </button>
             </div>
@@ -148,34 +127,13 @@ const Index = () => {
                   <form onSubmit={handleReservation} className="space-y-4">
                     <div>
                       <Label htmlFor="name" className="font-medium">Nome Completo</Label>
-                      <Input 
-                        id="name" 
-                        value={name} 
-                        onChange={(e) => setName(e.target.value)} 
-                        placeholder="Seu nome" 
-                        required 
-                        disabled={isSubmitting}
-                        className="rounded-xl"
-                      />
+                      <Input id="name" value={name} onChange={e => setName(e.target.value)} placeholder="Seu nome" required disabled={isSubmitting} className="rounded-xl" />
                     </div>
                     <div>
                       <Label htmlFor="email" className="font-medium">Email</Label>
-                      <Input 
-                        id="email" 
-                        type="email" 
-                        value={email} 
-                        onChange={(e) => setEmail(e.target.value)} 
-                        placeholder="seu@email.com" 
-                        required 
-                        disabled={isSubmitting}
-                        className="rounded-xl"
-                      />
+                      <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="seu@email.com" required disabled={isSubmitting} className="rounded-xl" />
                     </div>
-                    <Button 
-                      type="submit" 
-                      className="w-full bg-gradient-to-r from-[#0038a5] to-[#3777fa] rounded-xl font-medium"
-                      disabled={isSubmitting}
-                    >
+                    <Button type="submit" className="w-full bg-gradient-to-r from-[#0038a5] to-[#3777fa] rounded-xl font-medium" disabled={isSubmitting}>
                       {isSubmitting ? "A reservar..." : "Reservar Lugar"}
                     </Button>
                   </form>
@@ -230,11 +188,7 @@ const Index = () => {
           
           <AnimatedSection animation="scale-in" className="relative max-w-5xl mx-auto" delay={300}>
             <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl sm:rounded-2xl p-4 sm:p-8 border border-gray-200">
-              <img 
-                src="/lovable-uploads/b1e121dd-8231-4967-98ca-ea0ca7c04f95.png" 
-                alt="Dashboard Fluxo Stock"
-                className="rounded-xl shadow-2xl w-full"
-              />
+              <img src="/lovable-uploads/b1e121dd-8231-4967-98ca-ea0ca7c04f95.png" alt="Dashboard Fluxo Stock" className="rounded-xl shadow-2xl w-full" />
               <div className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 bg-gradient-to-r from-[#0038a5] to-[#3777fa] text-white p-2 sm:p-4 rounded-lg sm:rounded-xl shadow-lg animate-float">
                 <TrendingUp className="h-4 w-4 sm:h-6 sm:w-6" />
               </div>
@@ -245,8 +199,8 @@ const Index = () => {
 
       {/* End Excel Era Section */}
       <AnimatedSection>
-        <section className="py-12 sm:py-24 bg-gradient-to-br from-red-50 to-orange-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="bg-zinc-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-zinc-50">
             <div className="text-center mb-12 sm:mb-20">
               <AnimatedSection animation="fade-in">
                 <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-black mb-4 sm:mb-6 tracking-tight px-2">
@@ -338,7 +292,7 @@ const Index = () => {
       {/* Export Reports Section */}
       <AnimatedSection>
         <section className="py-12 sm:py-24 bg-gradient-to-br from-blue-50 to-indigo-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-gray-50">
             <div className="text-center mb-12 sm:mb-20">
               <AnimatedSection animation="slide-up">
                 <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-black mb-4 sm:mb-6 tracking-tight px-2">
@@ -498,10 +452,7 @@ const Index = () => {
             </div>
 
             <AnimatedSection className="text-center mb-8 sm:mb-16" animation="bounce-in" delay={600}>
-              <div className="inline-flex items-center gap-3 sm:gap-4 bg-gradient-to-r from-[#0038a5] to-[#3777fa] text-white px-6 sm:px-8 py-4 sm:py-6 rounded-2xl">
-                <Zap className="h-6 w-6 sm:h-8 sm:w-8" />
-                <span className="text-lg sm:text-2xl font-bold">A Nossa Solução Completa</span>
-              </div>
+              
             </AnimatedSection>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -605,11 +556,7 @@ const Index = () => {
                 <div className="order-1 lg:order-2 relative">
                   <AnimatedSection animation="scale-in">
                     <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl sm:rounded-2xl p-4 sm:p-8">
-                      <img 
-                        src="/lovable-uploads/dda4c1f2-585e-41ca-8421-cc8b046126fc.png" 
-                        alt="Dashboard Fluxo Stock"
-                        className="rounded-xl shadow-2xl w-full"
-                      />
+                      <img src="/lovable-uploads/dda4c1f2-585e-41ca-8421-cc8b046126fc.png" alt="Dashboard Fluxo Stock" className="rounded-xl shadow-2xl w-full" />
                     </div>
                   </AnimatedSection>
                 </div>
@@ -621,11 +568,7 @@ const Index = () => {
                 <div className="order-2 lg:order-1 relative">
                   <AnimatedSection animation="scale-in">
                     <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl sm:rounded-2xl p-4 sm:p-8">
-                      <img 
-                        src="/lovable-uploads/71fa0184-3d0d-410e-be52-558e0a680eaa.png" 
-                        alt="Análises Fluxo Stock"
-                        className="rounded-xl shadow-2xl w-full"
-                      />
+                      <img src="/lovable-uploads/71fa0184-3d0d-410e-be52-558e0a680eaa.png" alt="Análises Fluxo Stock" className="rounded-xl shadow-2xl w-full" />
                     </div>
                   </AnimatedSection>
                 </div>
@@ -695,11 +638,7 @@ const Index = () => {
                 <div className="order-1 lg:order-2 relative">
                   <AnimatedSection animation="scale-in">
                     <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl sm:rounded-2xl p-4 sm:p-8">
-                      <img 
-                        src="/lovable-uploads/674421b6-f440-4441-b170-87eb33a576de.png" 
-                        alt="Gestão de Equipas Fluxo Stock"
-                        className="rounded-xl shadow-2xl w-full"
-                      />
+                      <img src="/lovable-uploads/674421b6-f440-4441-b170-87eb33a576de.png" alt="Gestão de Equipas Fluxo Stock" className="rounded-xl shadow-2xl w-full" />
                     </div>
                   </AnimatedSection>
                 </div>
@@ -908,41 +847,31 @@ const Index = () => {
             </div>
 
             <div className="space-y-4 sm:space-y-6">
-              {[
-                {
-                  question: "Quando será lançado oficialmente o Fluxo Stock?",
-                  answer: "O lançamento oficial do Fluxo Stock está previsto para este mês de dezembro de 2024. Estamos a finalizar os últimos testes e ajustes baseados no feedback dos nossos clientes beta. Quem reservar o lugar será notificado primeiro e terá acesso prioritário, além de condições especiais de lançamento incluindo período gratuito estendido."
-                },
-                {
-                  question: "Quanto vai custar a subscrição mensal do Fluxo Stock?",
-                  answer: "Estamos a finalizar uma estrutura de preços pensada especificamente para o mercado angolano, com diferentes planos para diferentes tipos e tamanhos de negócio. O nosso objetivo é que seja acessível e proporcione um excelente retorno do investimento. Os preços serão anunciados no lançamento, mas garantimos que será uma fração do que poupa em tempo e aumenta em rentabilidade."
-                },
-                {
-                  question: "Preciso de conhecimentos técnicos avançados para usar o Fluxo Stock?",
-                  answer: "Absolutamente não! O Fluxo Stock foi criado para ser extremamente intuitivo e fácil de usar. Se consegue usar WhatsApp ou Facebook, consegue usar o Fluxo Stock. Fornecemos tutoriais completos, suporte personalizado e a nossa equipa ajuda na configuração inicial. A maioria dos utilizadores consegue estar operacional em menos de 30 minutos."
-                },
-                {
-                  question: "O Fluxo Stock funciona sem ligação à internet?",
-                  answer: "O Fluxo Stock tem funcionalidades offline limitadas que permitem consultar informações básicas e registar algumas operações quando não há internet. Assim que a ligação for restaurada, todos os dados são sincronizados automaticamente. Para acesso completo a todas as funcionalidades e relatórios em tempo real, é necessária ligação à internet."
-                },
-                {
-                  question: "Como posso ter a certeza de que os meus dados estão seguros?",
-                  answer: "A segurança dos dados é a nossa prioridade máxima. Utilizamos encriptação de nível bancário (SSL 256-bit), servidores seguros com certificações internacionais, backup automático diário e múltiplas camadas de proteção. Os seus dados ficam armazenados em data centers certificados e nunca são partilhados com terceiros. Além disso, você pode exportar os seus dados a qualquer momento."
-                },
-                {
-                  question: "Posso importar os dados que já tenho de stock de outros sistemas?",
-                  answer: "Sim! O Fluxo Stock permite importar dados de Excel, outros sistemas de gestão e até mesmo listas manuais. A nossa equipa técnica ajuda no processo de migração para garantir que nenhuma informação se perde. Também oferecemos assistência para limpar e organizar os dados durante a importação, optimizando desde o início a estrutura do seu inventário."
-                },
-                {
-                  question: "O sistema é adequado para diferentes tipos de negócio?",
-                  answer: "O Fluxo Stock foi desenvolvido para ser flexível e adaptar-se a diferentes tipos de negócio: supermercados, farmácias, lojas de roupa, distribuidoras, armazéns, oficinas e muito mais. Pode configurar categorias personalizadas, unidades de medida específicas, múltiplas localizações e até mesmo diferentes moedas. O sistema cresce com o seu negócio."
-                },
-                {
-                  question: "Que tipo de suporte técnico é fornecido?",
-                  answer: "Oferecemos suporte completo em português de Angola através de múltiplos canais: WhatsApp para questões urgentes, email para questões detalhadas, tutoriais em vídeo, documentação completa e sessões de formação personalizadas. A nossa equipa de suporte conhece profundamente o mercado angolano e está disponível durante horário comercial com resposta rápida."
-                }
-              ].map((faq, index) => (
-                <AnimatedSection key={index} animation="slide-up" delay={index * 100}>
+              {[{
+              question: "Quando será lançado oficialmente o Fluxo Stock?",
+              answer: "O lançamento oficial do Fluxo Stock está previsto para este mês de dezembro de 2024. Estamos a finalizar os últimos testes e ajustes baseados no feedback dos nossos clientes beta. Quem reservar o lugar será notificado primeiro e terá acesso prioritário, além de condições especiais de lançamento incluindo período gratuito estendido."
+            }, {
+              question: "Quanto vai custar a subscrição mensal do Fluxo Stock?",
+              answer: "Estamos a finalizar uma estrutura de preços pensada especificamente para o mercado angolano, com diferentes planos para diferentes tipos e tamanhos de negócio. O nosso objetivo é que seja acessível e proporcione um excelente retorno do investimento. Os preços serão anunciados no lançamento, mas garantimos que será uma fração do que poupa em tempo e aumenta em rentabilidade."
+            }, {
+              question: "Preciso de conhecimentos técnicos avançados para usar o Fluxo Stock?",
+              answer: "Absolutamente não! O Fluxo Stock foi criado para ser extremamente intuitivo e fácil de usar. Se consegue usar WhatsApp ou Facebook, consegue usar o Fluxo Stock. Fornecemos tutoriais completos, suporte personalizado e a nossa equipa ajuda na configuração inicial. A maioria dos utilizadores consegue estar operacional em menos de 30 minutos."
+            }, {
+              question: "O Fluxo Stock funciona sem ligação à internet?",
+              answer: "O Fluxo Stock tem funcionalidades offline limitadas que permitem consultar informações básicas e registar algumas operações quando não há internet. Assim que a ligação for restaurada, todos os dados são sincronizados automaticamente. Para acesso completo a todas as funcionalidades e relatórios em tempo real, é necessária ligação à internet."
+            }, {
+              question: "Como posso ter a certeza de que os meus dados estão seguros?",
+              answer: "A segurança dos dados é a nossa prioridade máxima. Utilizamos encriptação de nível bancário (SSL 256-bit), servidores seguros com certificações internacionais, backup automático diário e múltiplas camadas de proteção. Os seus dados ficam armazenados em data centers certificados e nunca são partilhados com terceiros. Além disso, você pode exportar os seus dados a qualquer momento."
+            }, {
+              question: "Posso importar os dados que já tenho de stock de outros sistemas?",
+              answer: "Sim! O Fluxo Stock permite importar dados de Excel, outros sistemas de gestão e até mesmo listas manuais. A nossa equipa técnica ajuda no processo de migração para garantir que nenhuma informação se perde. Também oferecemos assistência para limpar e organizar os dados durante a importação, optimizando desde o início a estrutura do seu inventário."
+            }, {
+              question: "O sistema é adequado para diferentes tipos de negócio?",
+              answer: "O Fluxo Stock foi desenvolvido para ser flexível e adaptar-se a diferentes tipos de negócio: supermercados, farmácias, lojas de roupa, distribuidoras, armazéns, oficinas e muito mais. Pode configurar categorias personalizadas, unidades de medida específicas, múltiplas localizações e até mesmo diferentes moedas. O sistema cresce com o seu negócio."
+            }, {
+              question: "Que tipo de suporte técnico é fornecido?",
+              answer: "Oferecemos suporte completo em português de Angola através de múltiplos canais: WhatsApp para questões urgentes, email para questões detalhadas, tutoriais em vídeo, documentação completa e sessões de formação personalizadas. A nossa equipa de suporte conhece profundamente o mercado angolano e está disponível durante horário comercial com resposta rápida."
+            }].map((faq, index) => <AnimatedSection key={index} animation="slide-up" delay={index * 100}>
                   <Card className="border-gray-200 rounded-2xl">
                     <CardContent className="p-6 sm:p-8">
                       <h3 className="text-lg sm:text-xl font-bold text-black mb-3 sm:mb-4">
@@ -953,8 +882,7 @@ const Index = () => {
                       </p>
                     </CardContent>
                   </Card>
-                </AnimatedSection>
-              ))}
+                </AnimatedSection>)}
             </div>
           </div>
         </section>
@@ -989,8 +917,8 @@ const Index = () => {
                       Resposta rápida durante horário comercial.
                     </p>
                     <Button className="bg-green-500 hover:bg-green-600 text-white px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base font-bold rounded-xl" onClick={() => {
-                      console.log("WhatsApp link needs to be configured here");
-                    }}>
+                    console.log("WhatsApp link needs to be configured here");
+                  }}>
                       Conversar no WhatsApp
                     </Button>
                   </CardContent>
@@ -1009,8 +937,8 @@ const Index = () => {
                       Resposta garantida em 24 horas.
                     </p>
                     <Button className="bg-blue-500 hover:bg-blue-600 text-white px-6 sm:px-8 py-2 sm:py-3 text-sm sm:text-base font-bold rounded-xl" onClick={() => {
-                      window.location.href = "mailto:info@fluxostock.com";
-                    }}>
+                    window.location.href = "mailto:info@fluxostock.com";
+                  }}>
                       Enviar Email
                     </Button>
                   </CardContent>
@@ -1083,10 +1011,7 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
             <div>
-              <button 
-                onClick={scrollToTop}
-                className="flex items-center space-x-3 mb-4 sm:mb-6 hover:opacity-80 transition-opacity"
-              >
+              <button onClick={scrollToTop} className="flex items-center space-x-3 mb-4 sm:mb-6 hover:opacity-80 transition-opacity">
                 <img src="/lovable-uploads/be851739-6948-467b-b6d5-48c4ce48598f.png" alt="Fluxo Stock" className="h-6 w-6 sm:h-8 sm:w-8" />
                 <span className="text-lg sm:text-xl font-bold">Fluxo Stock</span>
               </button>
@@ -1144,8 +1069,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
