@@ -46,19 +46,19 @@ export const AnimatedSection = ({
   const getAnimationClass = () => {
     switch (animation) {
       case "fade-in":
-        return isVisible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-8 blur-sm";
+        return isVisible ? "animate-fade-in" : "opacity-0 translate-y-8";
       case "scale-in":
-        return isVisible ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-75 blur-sm";
+        return isVisible ? "animate-scale-in" : "opacity-0 scale-75";
       case "slide-up":
-        return isVisible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-12 blur-sm";
+        return isVisible ? "animate-slide-up" : "opacity-0 translate-y-12";
       case "fade-in-left":
-        return isVisible ? "opacity-100 translate-x-0 blur-0" : "opacity-0 -translate-x-8 blur-sm";
+        return isVisible ? "animate-fade-in-left" : "opacity-0 -translate-x-8";
       case "fade-in-right":
-        return isVisible ? "opacity-100 translate-x-0 blur-0" : "opacity-0 translate-x-8 blur-sm";
+        return isVisible ? "animate-fade-in-right" : "opacity-0 translate-x-8";
       case "bounce-in":
-        return isVisible ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-50 blur-sm";
+        return isVisible ? "animate-bounce-in" : "opacity-0 scale-50";
       default:
-        return isVisible ? "opacity-100 blur-0" : "opacity-0 blur-sm";
+        return isVisible ? "animate-fade-in" : "opacity-0";
     }
   };
 
