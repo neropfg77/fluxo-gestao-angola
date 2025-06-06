@@ -10,15 +10,14 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { MobileSidebar } from "@/components/MobileSidebar";
 import { AnimatedSection } from "@/components/AnimatedSection";
+
 const Index = () => {
   const [isReservationOpen, setIsReservationOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [navbarTransparent, setNavbarTransparent] = useState(false);
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
 
   // Handle navbar transparency when reaching benefits section
   useEffect(() => {
@@ -30,19 +29,20 @@ const Index = () => {
         setNavbarTransparent(isInView);
       }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   const handleReservation = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
     try {
-      const {
-        error
-      } = await supabase.from('newsletter_signups').insert([{
-        name: name.trim(),
-        email: email.trim()
-      }]);
+      const { error } = await supabase
+        .from('newsletter_signups')
+        .insert([{ name: name.trim(), email: email.trim() }]);
+
       if (error) {
         console.error('Error saving signup:', error);
         toast({
@@ -52,10 +52,12 @@ const Index = () => {
         });
         return;
       }
+
       toast({
         title: "Lugar Reservado!",
         description: "Obrigado! Entraremos em contacto assim que o Fluxo Stock estiver disponível."
       });
+
       setIsReservationOpen(false);
       setEmail("");
       setName("");
@@ -70,21 +72,20 @@ const Index = () => {
       setIsSubmitting(false);
     }
   };
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({
-        behavior: "smooth"
-      });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  return <div className="min-h-screen bg-white font-sf-pro">
+
+  return (
+    <div className="min-h-screen bg-white font-sf-pro">
       {/* Navigation */}
       <nav className={`fixed top-0 w-full z-50 border-b transition-all duration-500 ${navbarTransparent ? 'bg-transparent backdrop-blur-sm border-white/10' : 'bg-white/95 backdrop-blur-xl border-gray-100'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -127,13 +128,34 @@ const Index = () => {
                   <form onSubmit={handleReservation} className="space-y-4">
                     <div>
                       <Label htmlFor="name" className="font-medium">Nome Completo</Label>
-                      <Input id="name" value={name} onChange={e => setName(e.target.value)} placeholder="Seu nome" required disabled={isSubmitting} className="rounded-xl" />
+                      <Input 
+                        id="name" 
+                        value={name} 
+                        onChange={(e) => setName(e.target.value)} 
+                        placeholder="Seu nome" 
+                        required 
+                        disabled={isSubmitting}
+                        className="rounded-xl" 
+                      />
                     </div>
                     <div>
                       <Label htmlFor="email" className="font-medium">Email</Label>
-                      <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="seu@email.com" required disabled={isSubmitting} className="rounded-xl" />
+                      <Input 
+                        id="email" 
+                        type="email" 
+                        value={email} 
+                        onChange={(e) => setEmail(e.target.value)} 
+                        placeholder="seu@email.com" 
+                        required 
+                        disabled={isSubmitting}
+                        className="rounded-xl" 
+                      />
                     </div>
-                    <Button type="submit" className="w-full bg-gradient-to-r from-[#0038a5] to-[#3777fa] rounded-xl font-medium" disabled={isSubmitting}>
+                    <Button 
+                      type="submit" 
+                      className="w-full bg-gradient-to-r from-[#0038a5] to-[#3777fa] rounded-xl font-medium" 
+                      disabled={isSubmitting}
+                    >
                       {isSubmitting ? "A reservar..." : "Reservar Lugar"}
                     </Button>
                   </form>
@@ -1069,6 +1091,8 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>;
+    </div>
+  );
 };
+
 export default Index;
