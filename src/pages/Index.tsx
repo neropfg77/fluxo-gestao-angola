@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
@@ -118,16 +119,16 @@ const Index = () => {
                     <span className="sm:hidden">Reservar</span>
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-md mx-4 rounded-xl">
+                <DialogContent className="sm:max-w-md mx-4 rounded-xl max-h-[90vh] overflow-y-auto">
                   <DialogHeader>
                     <DialogTitle className="text-lg font-bold">Reserve o seu lugar no Fluxo Stock</DialogTitle>
                     <DialogDescription className="text-sm font-medium">
                       Seja um dos primeiros a experimentar a revolução na gestão de stock em Angola quando lançarmos este mês!
                     </DialogDescription>
                   </DialogHeader>
-                  <form onSubmit={handleReservation} className="space-y-4">
-                    <div>
-                      <Label htmlFor="name" className="font-medium">Nome Completo</Label>
+                  <form onSubmit={handleReservation} className="space-y-4 mt-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="name" className="font-medium text-sm">Nome Completo</Label>
                       <Input 
                         id="name" 
                         value={name} 
@@ -135,11 +136,11 @@ const Index = () => {
                         placeholder="Seu nome" 
                         required 
                         disabled={isSubmitting}
-                        className="rounded-xl" 
+                        className="rounded-xl h-12 text-base" 
                       />
                     </div>
-                    <div>
-                      <Label htmlFor="email" className="font-medium">Email</Label>
+                    <div className="space-y-2">
+                      <Label htmlFor="email" className="font-medium text-sm">Email</Label>
                       <Input 
                         id="email" 
                         type="email" 
@@ -148,12 +149,12 @@ const Index = () => {
                         placeholder="seu@email.com" 
                         required 
                         disabled={isSubmitting}
-                        className="rounded-xl" 
+                        className="rounded-xl h-12 text-base" 
                       />
                     </div>
                     <Button 
                       type="submit" 
-                      className="w-full bg-gradient-to-r from-[#0038a5] to-[#3777fa] rounded-xl font-medium" 
+                      className="w-full bg-gradient-to-r from-[#0038a5] to-[#3777fa] rounded-xl font-medium h-12 text-base mt-6" 
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? "A reservar..." : "Reservar Lugar"}
@@ -473,9 +474,17 @@ const Index = () => {
               </AnimatedSection>
             </div>
 
-            <AnimatedSection className="text-center mb-8 sm:mb-16" animation="bounce-in" delay={600}>
-              
-            </AnimatedSection>
+            {/* New Solutions Heading */}
+            <div className="text-center mb-8 sm:mb-16">
+              <AnimatedSection animation="slide-up" delay={600}>
+                <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-black mb-4 sm:mb-6 tracking-tight px-2">
+                  As nossas soluções
+                </h2>
+                <p className="text-base sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4 font-medium">
+                  Para cada desafio, temos uma solução inovadora que vai transformar a forma como gere o seu negócio.
+                </p>
+              </AnimatedSection>
+            </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               <AnimatedSection animation="slide-up" delay={200}>
