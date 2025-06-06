@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { ArrowRight, Menu, X, Users, TrendingUp, Shield, Clock, CheckCircle, Star, BarChart3, Package, UserCheck, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -47,7 +48,7 @@ const Index = () => {
     <div className="min-h-screen bg-white">
       {/* Floating Transparent Navbar */}
       <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[95%] max-w-6xl">
-        <div className="bg-white/20 backdrop-blur-lg border border-white/30 rounded-3xl px-6 py-4 shadow-lg">
+        <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-3xl px-6 py-4 shadow-lg">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <img 
@@ -69,12 +70,12 @@ const Index = () => {
             <div className="hidden md:flex items-center space-x-4">
               <Button 
                 variant="outline" 
-                className="bg-white/20 backdrop-blur-sm border-white/30 text-gray-700 hover:bg-white/30 rounded-2xl"
+                className="bg-white/10 backdrop-blur-sm border-white/20 text-gray-700 hover:bg-white/20 rounded-2xl"
                 onClick={() => setIsNewsletterOpen(true)}
               >
                 Newsletter
               </Button>
-              <Button className="bg-blue-600/80 backdrop-blur-sm text-white hover:bg-blue-700/80 rounded-2xl">
+              <Button className="bg-blue-600/20 backdrop-blur-sm text-blue-800 hover:bg-blue-600/30 border border-blue-600/30 rounded-2xl">
                 Reservar o teu Lugar
               </Button>
             </div>
@@ -119,7 +120,7 @@ const Index = () => {
       {/* Newsletter Modal */}
       {isNewsletterOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="bg-white/90 backdrop-blur-lg rounded-3xl p-8 w-full max-w-md shadow-2xl border border-white/30">
+          <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 w-full max-w-md shadow-2xl border border-white/20">
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-2xl font-bold text-gray-900">Newsletter</h3>
               <button 
@@ -141,7 +142,7 @@ const Index = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="seu@email.com"
-                  className="w-full px-4 py-3 bg-white/50 backdrop-blur-sm border border-gray-200 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-4 py-3 bg-white/30 backdrop-blur-sm border border-white/20 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder:text-gray-600"
                   required
                 />
               </div>
@@ -160,7 +161,9 @@ const Index = () => {
 
       {/* Hero Section */}
       <section id="home" className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-blue-50 to-indigo-100 pt-24">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%233b82f6" fill-opacity="0.1"%3E%3Cpath d="M25 0C11.2 0 0 11.2 0 25s11.2 25 25 25 25-11.2 25-25S38.8 0 25 0zm0 45C13.95 45 5 36.05 5 25S13.95 5 25 5s20 8.95 20 20-8.95 20-20 20z"/%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+        <div className="absolute inset-0 opacity-30" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='50' height='50' viewBox='0 0 50 50' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%233b82f6' fill-opacity='0.1'%3E%3Cpath d='M25 0C11.2 0 0 11.2 0 25s11.2 25 25 25 25-11.2 25-25S38.8 0 25 0zm0 45C13.95 45 5 36.05 5 25S13.95 5 25 5s20 8.95 20 20-8.95 20-20 20z'/%3E%3C/g%3E%3C/svg%3E")`
+        }}></div>
         
         <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
           <AnimatedSection animation="fade-in" className="mb-8">
