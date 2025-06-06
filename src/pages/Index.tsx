@@ -119,47 +119,49 @@ const Index = () => {
                     <span className="sm:hidden">Reservar</span>
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-md mx-4 rounded-xl max-h-[90vh] overflow-y-auto">
-                  <DialogHeader>
-                    <DialogTitle className="text-lg font-bold">Reserve o seu lugar no Fluxo Stock</DialogTitle>
-                    <DialogDescription className="text-sm font-medium">
-                      Seja um dos primeiros a experimentar a revolução na gestão de stock em Angola quando lançarmos este mês!
-                    </DialogDescription>
-                  </DialogHeader>
-                  <form onSubmit={handleReservation} className="space-y-4 mt-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name" className="font-medium text-sm">Nome Completo</Label>
-                      <Input 
-                        id="name" 
-                        value={name} 
-                        onChange={(e) => setName(e.target.value)} 
-                        placeholder="Seu nome" 
-                        required 
+                <DialogContent className="w-[90vw] max-w-sm mx-auto rounded-xl border-0 p-0 overflow-hidden">
+                  <div className="p-6">
+                    <DialogHeader className="space-y-3 mb-6">
+                      <DialogTitle className="text-lg font-bold text-center">Reserve o seu lugar</DialogTitle>
+                      <DialogDescription className="text-sm text-center text-gray-600 leading-relaxed">
+                        Seja um dos primeiros a experimentar a revolução na gestão de stock em Angola!
+                      </DialogDescription>
+                    </DialogHeader>
+                    <form onSubmit={handleReservation} className="space-y-4">
+                      <div>
+                        <Label htmlFor="name" className="text-sm font-medium text-gray-700">Nome Completo</Label>
+                        <Input 
+                          id="name" 
+                          value={name} 
+                          onChange={(e) => setName(e.target.value)} 
+                          placeholder="Seu nome completo" 
+                          required 
+                          disabled={isSubmitting}
+                          className="mt-1 h-11 text-base rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="email" className="text-sm font-medium text-gray-700">Email</Label>
+                        <Input 
+                          id="email" 
+                          type="email" 
+                          value={email} 
+                          onChange={(e) => setEmail(e.target.value)} 
+                          placeholder="seu@email.com" 
+                          required 
+                          disabled={isSubmitting}
+                          className="mt-1 h-11 text-base rounded-lg border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                        />
+                      </div>
+                      <Button 
+                        type="submit" 
+                        className="w-full bg-gradient-to-r from-[#0038a5] to-[#3777fa] hover:from-[#002980] hover:to-[#2563eb] text-white font-medium h-11 text-base rounded-lg mt-6 disabled:opacity-50" 
                         disabled={isSubmitting}
-                        className="rounded-xl h-12 text-base" 
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email" className="font-medium text-sm">Email</Label>
-                      <Input 
-                        id="email" 
-                        type="email" 
-                        value={email} 
-                        onChange={(e) => setEmail(e.target.value)} 
-                        placeholder="seu@email.com" 
-                        required 
-                        disabled={isSubmitting}
-                        className="rounded-xl h-12 text-base" 
-                      />
-                    </div>
-                    <Button 
-                      type="submit" 
-                      className="w-full bg-gradient-to-r from-[#0038a5] to-[#3777fa] rounded-xl font-medium h-12 text-base mt-6" 
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? "A reservar..." : "Reservar Lugar"}
-                    </Button>
-                  </form>
+                      >
+                        {isSubmitting ? "A reservar..." : "Reservar Lugar"}
+                      </Button>
+                    </form>
+                  </div>
                 </DialogContent>
               </Dialog>
               
