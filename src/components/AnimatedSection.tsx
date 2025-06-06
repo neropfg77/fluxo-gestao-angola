@@ -28,7 +28,7 @@ export const AnimatedSection = ({
       },
       {
         threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
+        rootMargin: "0px 0px -100px 0px"
       }
     );
 
@@ -46,26 +46,26 @@ export const AnimatedSection = ({
   const getAnimationClass = () => {
     switch (animation) {
       case "fade-in":
-        return isVisible ? "animate-fade-in" : "opacity-0 translate-y-8";
+        return isVisible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-8 blur-sm";
       case "scale-in":
-        return isVisible ? "animate-scale-in" : "opacity-0 scale-75";
+        return isVisible ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-95 blur-sm";
       case "slide-up":
-        return isVisible ? "animate-slide-up" : "opacity-0 translate-y-12";
+        return isVisible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-12 blur-sm";
       case "fade-in-left":
-        return isVisible ? "animate-fade-in-left" : "opacity-0 -translate-x-8";
+        return isVisible ? "opacity-100 translate-x-0 blur-0" : "opacity-0 -translate-x-8 blur-sm";
       case "fade-in-right":
-        return isVisible ? "animate-fade-in-right" : "opacity-0 translate-x-8";
+        return isVisible ? "opacity-100 translate-x-0 blur-0" : "opacity-0 translate-x-8 blur-sm";
       case "bounce-in":
-        return isVisible ? "animate-bounce-in" : "opacity-0 scale-50";
+        return isVisible ? "opacity-100 scale-100 blur-0" : "opacity-0 scale-90 blur-sm";
       default:
-        return isVisible ? "animate-fade-in" : "opacity-0";
+        return isVisible ? "opacity-100 blur-0" : "opacity-0 blur-sm";
     }
   };
 
   return (
     <div
       ref={ref}
-      className={`transition-all duration-1000 ease-out ${getAnimationClass()} ${className}`}
+      className={`transition-all duration-1000 ease-out transform ${getAnimationClass()} ${className}`}
     >
       {children}
     </div>
